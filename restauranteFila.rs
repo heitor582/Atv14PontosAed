@@ -30,8 +30,8 @@ impl<T> Fila<T> {
   }
 }
 
-fn inicio(fila1: &mut Fila::<i32>, fila2: &mut Fila::<i32>, fila3: &mut Fila::<i32>){
-  let mut contador: i32 = 0;
+fn inicio(fila1: &mut Fila::<u32>, fila2: &mut Fila::<u32>, fila3: &mut Fila::<u32>){
+  let mut contador: u32 = 0;
   loop{
     let mut inputLine: String = String::new();
     println!("1 - Inserção de cliente na fila de pedidos");
@@ -42,7 +42,7 @@ fn inicio(fila1: &mut Fila::<i32>, fila2: &mut Fila::<i32>, fila3: &mut Fila::<i
     println!("6 - Sair");
     io::stdin().read_line(&mut inputLine).unwrap();
 
-    let number: i32 = i32::from_str(inputLine.trim()).unwrap_or(0);
+    let number: u32 = u32::from_str(inputLine.trim()).unwrap_or(0);
 
     match number {
       1 => {
@@ -52,7 +52,7 @@ fn inicio(fila1: &mut Fila::<i32>, fila2: &mut Fila::<i32>, fila3: &mut Fila::<i
       },
       2 => {
         if !fila1.is_empty(){
-          let codigo: i32 = *fila1.peek().unwrap_or(&0);
+          let codigo: u32 = *fila1.peek().unwrap_or(&0);
           fila1.dequeue();
           println!("Cliente {} foi removido da fila de pedidos", codigo);
           fila2.enqueue(codigo);
@@ -63,7 +63,7 @@ fn inicio(fila1: &mut Fila::<i32>, fila2: &mut Fila::<i32>, fila3: &mut Fila::<i
       },
       3 => {
         if !fila2.is_empty(){
-          let codigo: i32 = *fila2.peek().unwrap_or(&0);
+          let codigo: u32 = *fila2.peek().unwrap_or(&0);
           fila2.dequeue();
           println!("Cliente {} foi removido da fila de pagamentos", codigo);
           fila3.enqueue(codigo);
@@ -74,7 +74,7 @@ fn inicio(fila1: &mut Fila::<i32>, fila2: &mut Fila::<i32>, fila3: &mut Fila::<i
       },
       4 => {
         if !fila3.is_empty(){
-          let codigo: i32 = *fila3.peek().unwrap_or(&0);
+          let codigo: u32 = *fila3.peek().unwrap_or(&0);
           fila3.dequeue();
           println!("Cliente {} foi removido da fila de encomendas.", codigo);
         }else{
@@ -93,8 +93,8 @@ fn inicio(fila1: &mut Fila::<i32>, fila2: &mut Fila::<i32>, fila3: &mut Fila::<i
 }
 
 fn main(){
-  let mut fila1: Fila<i32> = Fila::<i32>::new();
-  let mut fila2: Fila<i32> = Fila::<i32>::new();
-  let mut fila3: Fila<i32> = Fila::<i32>::new();
+  let mut fila1: Fila<u32> = Fila::<u32>::new();
+  let mut fila2: Fila<u32> = Fila::<u32>::new();
+  let mut fila3: Fila<u32> = Fila::<u32>::new();
   inicio(&mut fila1, &mut fila2, &mut fila3);
 }
