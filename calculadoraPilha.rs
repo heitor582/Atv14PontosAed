@@ -1,5 +1,6 @@
 use std::io;
 use std::str::FromStr;
+use std::process;
 
 #[derive(Debug)]
 struct Pilha<T> {
@@ -33,13 +34,17 @@ impl<T> Pilha<T> {
 }
 
 fn inserir(pilha: &mut Pilha<i32>){
+  let mut inputLine: String = String::new();
+  
   loop{
-    let mut inputLine: String = String::new();
     println!("Enter a number or mathematical operation or write 'quit' to quit the calculator ");
     
+    inputLine.clear();
     io::stdin().read_line(&mut inputLine).unwrap();
+
     if inputLine.trim() == "quit" {
       println!("You quit the calculator! ");
+      process::exit(0);
       break;
     }
 
