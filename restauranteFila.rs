@@ -1,5 +1,7 @@
 use std::io;
 use std::str::FromStr;
+use std::process;
+
 #[derive(Debug)]
 struct Fila<T> {
   fila: Vec<T>
@@ -32,14 +34,17 @@ impl<T> Fila<T> {
 
 fn inicio(fila1: &mut Fila::<u32>, fila2: &mut Fila::<u32>, fila3: &mut Fila::<u32>){
   let mut contador: u32 = 0;
+  let mut inputLine: String = String::new();
+    
   loop{
-    let mut inputLine: String = String::new();
     println!("1 - Inserção de cliente na fila de pedidos");
     println!("2 - Remoção de cliente da fila de pedidos");
     println!("3 - Remoção de cliente da fila de pagamentos");
     println!("4 - Remoção de cliente da fila de encomendas");
     println!("5 - Vizualizar filas");
     println!("6 - Sair");
+
+    inputLine.clear();
     io::stdin().read_line(&mut inputLine).unwrap();
 
     let number: u32 = u32::from_str(inputLine.trim()).unwrap_or(0);
@@ -86,7 +91,11 @@ fn inicio(fila1: &mut Fila::<u32>, fila2: &mut Fila::<u32>, fila3: &mut Fila::<u
         println!("Fila pagamentos: {:?}", fila2);
         println!("Fila encomendas: {:?}", fila3);
       }
-      6 => break,
+      6 => {
+        println!("Saindo!");
+        process::exit(0);
+        break;
+      },
       _ => println!("Não temos ações para esse digito")
     }
   }
