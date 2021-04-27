@@ -45,12 +45,11 @@ fn inserir(pilha: &mut Pilha<i32>){
     if inputLine.trim() == "quit" {
       println!("You quit the calculator! ");
       process::exit(0);
-      break;
     }
 
     if pilha.length() == 100{
       println!("Please restart the calculator ");
-      break;
+      process::exit(0);
     }
 
     match &inputLine.trim() as &str {

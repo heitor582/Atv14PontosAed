@@ -94,7 +94,6 @@ fn inicio(fila1: &mut Fila::<u32>, fila2: &mut Fila::<u32>, fila3: &mut Fila::<u
       6 => {
         println!("Saindo!");
         process::exit(0);
-        break;
       },
       _ => println!("Não temos ações para esse digito")
     }
